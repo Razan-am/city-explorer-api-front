@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AlertMessage from './components/AlertMessage';
 import Weather from './components/Weather';
+import Movies from './components/Movies';
 import Image from 'react-bootstrap/Image';
 import axios from 'axios';
 
@@ -91,6 +92,8 @@ class App extends Component {
                 <p>{item.total_votes}</p>
                 <img alt={item.title} src={item.poster}/>
             </div>
+            // <Movies 
+            // title={item.title} votes={item.total_votes} poster={item.poster}/>
           )
         })
       }
