@@ -1,0 +1,85 @@
+import React, { Component } from 'react';
+import AlertMessage from './components/AlertMessage';
+import Weather from './components/Weather';
+import Image from 'react-bootstrap/Image';
+import axios from 'axios';
+
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      city_name: '',
+      latitude: '',
+      longitude: '',
+      error: '',
+      show: false,
+      WeatherData: {},
+      movieData: []
+    }
+  }
+  handlerData = (e) => {
+    this.setState({
+      city_name: e.target.value,
+    })
+  }
+  handlerSubmit = async (e) => {
+    e.preventDefault()
+
+
+    let axiosResponed = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.city_name}&format=json`).then(response => {
+      this.setState({
+        city_name: axiosResponed.data[0].display_name,
+        lat: axiosResponed.data[0].lat,
+        lon: axiosResponed.data[0].lon,
+        alert: false,
+        show: true,
+        weatherData: axiosLocalApi.data
+      })
+    })
+    const axiosLocalApi = await axios.get(`http://localhost:8000/weather/?lat=${this.state.lat}&lon=${this.state.lon}`).then(response => {
+      this.setState({
+        weatherData: axiosLocalApi.data
+      })
+    })
+      // console.log(axiosLocalApi.data)
+      // console.log(axiosResponed.data)
+      .catch(error =>{
+        this.setState=({
+          error: "please provide a valid city name",
+          alert: true,
+          show: false,
+        })
+      })
+
+
+}
+render() {
+  return (
+    <>
+      <AlertMessage
+        alert={this.state.alert}
+        error={this.state.error} />
+      <form onSubmit={this.handlerSubmit} style={{ marginLeft: '100px', paddingTop: '20px', marginButton: '20px', display: 'block', width: '50px' }}>
+        <input type='text' placeholder='City Name' onChange={(e) => { this.handlerData(e) }} />
+        <button >Explorer!</button>
+      </form>
+      <div>
+        {this.state.show &&
+          <div>
+            <h5>{this.state.city_name}</h5>
+            <Image alt='map' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${this.state.latitude},${this.state.longitude}&zoom=1-8`} fluid style={{ margin: '100px', width: '1000px' }} />
+          </div>
+        }
+      </div>
+      {
+        <Weather desc={this.state.weatherData.description} date={this.state.weatherData.date} />
+
+      }
+    </>
+  )
+}
+}
+
+export default App;
