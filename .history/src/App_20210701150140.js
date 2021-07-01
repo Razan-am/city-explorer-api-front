@@ -24,7 +24,7 @@ class App extends Component {
     this.setState({
       display_name: e.target.value,
     })
-    console.log('string',e.target.value);
+    console.log( e.target.value);
   }
   handlerSubmit = async (e) => {
     e.preventDefault()
@@ -42,12 +42,9 @@ class App extends Component {
         this.setState({
           weatherData: axiosLocalApi.data
         })
-      console.log(axiosLocalApi.data);
-    }).then(async()=>{
-      console.log('display',this.state.display_name);
-      let city_name = this.state.display_name.split(',')[0]
-      console.log('city',city_name);
-      const moviesApi = await axios.get(`http://localhost:8000/movies/?query=${city_name}`)
+      // console.log(axiosLocalApi.data);
+    }).then(async(city)=>{
+      const moviesApi = await axios.get(`http://localhost:8000/movies/?query=${this.state.display_name}`)
 
       this.setState({
         moviesData:moviesApi.data

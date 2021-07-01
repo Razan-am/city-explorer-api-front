@@ -38,7 +38,7 @@ class App extends Component {
         show: true,
       })
     }).then(async()=>{
-      const axiosLocalApi = await axios.get(`http://localhost:8000/weather/?key=1ce9a45e3f574b64af6379c6c4a8b0cc&lat=${this.state.lat}&lon=${this.state.lon}`)
+      const axiosLocalApi = await axios.get(`http://localhost:8000/weather?lat=31.95&lon=35.91`)
         this.setState({
           weatherData: axiosLocalApi.data
         })

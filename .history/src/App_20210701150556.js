@@ -42,12 +42,11 @@ class App extends Component {
         this.setState({
           weatherData: axiosLocalApi.data
         })
-      console.log(axiosLocalApi.data);
-    }).then(async()=>{
+      // console.log(axiosLocalApi.data);
+    }).then(async(city)=>{
       console.log('display',this.state.display_name);
-      let city_name = this.state.display_name.split(',')[0]
-      console.log('city',city_name);
-      const moviesApi = await axios.get(`http://localhost:8000/movies/?query=${city_name}`)
+      let city = this.state.display_name.split(',')
+      const moviesApi = await axios.get(`http://localhost:8000/movies/?query=${this.state.display_name}`)
 
       this.setState({
         moviesData:moviesApi.data

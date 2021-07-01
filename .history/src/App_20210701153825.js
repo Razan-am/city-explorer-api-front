@@ -42,7 +42,7 @@ class App extends Component {
         this.setState({
           weatherData: axiosLocalApi.data
         })
-      console.log(axiosLocalApi.data);
+      // console.log(axiosLocalApi.data);
     }).then(async()=>{
       console.log('display',this.state.display_name);
       let city_name = this.state.display_name.split(',')[0]

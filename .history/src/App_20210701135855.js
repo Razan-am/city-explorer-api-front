@@ -24,14 +24,13 @@ class App extends Component {
     this.setState({
       display_name: e.target.value,
     })
-    console.log('string',e.target.value);
   }
   handlerSubmit = async (e) => {
     e.preventDefault()
     let axiosResponed = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.display_name}&format=json`).then(request=>{
 
       this.setState({
-        display_name: request.data[0].display_name,
+        display_name: request.data.display_name,
         lat: request.data[0].lat,
         lon: request.data[0].lon,
         alert: false,
@@ -44,15 +43,11 @@ class App extends Component {
         })
       console.log(axiosLocalApi.data);
     }).then(async()=>{
-      console.log('display',this.state.display_name);
-      let city_name = this.state.display_name.split(',')[0]
-      console.log('city',city_name);
-      const moviesApi = await axios.get(`http://localhost:8000/movies/?query=${city_name}`)
+      const moviesApi = await axios.get(`http://localhost:8000/movies/?query=amman`)
 
       this.setState({
         moviesData:moviesApi.data
       })
-      console.log(moviesApi.data);
     })
     .catch((error) => {
       

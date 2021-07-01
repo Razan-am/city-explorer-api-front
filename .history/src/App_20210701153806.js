@@ -38,11 +38,11 @@ class App extends Component {
         show: true,
       })
     }).then(async()=>{
-      const axiosLocalApi = await axios.get(`http://localhost:8000/weather/?key=1ce9a45e3f574b64af6379c6c4a8b0cc&lat=${this.state.lat}&lon=${this.state.lon}`)
+      const axiosLocalApi = await axios.get(`http://localhost:8000/weather/?key=${process.env.WEATHER_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}`)
         this.setState({
           weatherData: axiosLocalApi.data
         })
-      console.log(axiosLocalApi.data);
+      // console.log(axiosLocalApi.data);
     }).then(async()=>{
       console.log('display',this.state.display_name);
       let city_name = this.state.display_name.split(',')[0]
