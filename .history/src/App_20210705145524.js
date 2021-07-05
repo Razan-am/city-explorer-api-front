@@ -28,8 +28,7 @@ class App extends Component {
   }
   handlerSubmit = async (e) => {
     e.preventDefault()
-    // let axiosResponed = 
-    await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.display_name}&format=json`).then(request=>{
+    let axiosResponed = await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.display_name}&format=json`).then(request=>{
 
       this.setState({
         display_name: request.data[0].display_name,
