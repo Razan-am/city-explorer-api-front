@@ -29,8 +29,8 @@ class App extends Component {
   }
   handlerSubmit = async (e) => {
     e.preventDefault()
-    let axiosResponed = 
-    await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.0a80fd547a3c1e8574e39921b81514c5&q=${this.state.display_name}&format=json`).then(request=>{
+    // let axiosResponed = 
+    await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.display_name}&format=json`).then(request=>{
 
       this.setState({
         display_name: request.data[0].display_name,
@@ -98,6 +98,8 @@ class App extends Component {
                 <p>{item.total_votes}</p>
                 <img alt={item.title} src={item.poster}/>
             </div>
+            // <Movies 
+            // title={item.title} votes={item.total_votes} poster={item.poster}/>
           )
         })
       }

@@ -20,17 +20,15 @@ class App extends Component {
     }
   }
   handlerData = (e) => {
-    e.preventDefault()
     this.setState({
       display_name: e.target.value,
-      newCity:e.target.value
     })
     console.log('string',e.target.value);
   }
   handlerSubmit = async (e) => {
     e.preventDefault()
-    let axiosResponed = 
-    await axios.get(`https://eu1.locationiq.com/v1/search.php?key=pk.0a80fd547a3c1e8574e39921b81514c5&q=${this.state.display_name}&format=json`).then(request=>{
+    // let axiosResponed = 
+    await axios.get(`https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.display_name}&format=json`).then(request=>{
 
       this.setState({
         display_name: request.data[0].display_name,
@@ -40,7 +38,7 @@ class App extends Component {
         show: true,
       })
     }).then(async()=>{
-      const axiosLocalApi = await axios.get(`http://localhost:8000/weather/?key=1ce9a45e3f574b64af6379c6c4a8b0cc&lat=${this.state.lat}&lon=${this.state.lon}`)
+      const axiosLocalApi = await axios.get(`http://localhost:8000/weather/?key=${process.env.REACT_APP_WEATHER_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}`)
         this.setState({
           weatherData: axiosLocalApi.data
         })
@@ -49,7 +47,8 @@ class App extends Component {
       console.log('display',this.state.display_name);
       let city_name = this.state.display_name.split(',')[0]
       console.log('city',city_name);
-      const moviesApi = await axios.get(`http://localhost:8000/movies/?query=${this.state.newCity}`)
+      const moviesApi = await axios.get(`http://localhost:8000/movies/?query=${city_name}`)
+
       this.setState({
         moviesData:moviesApi.data
       })
@@ -98,6 +97,8 @@ class App extends Component {
                 <p>{item.total_votes}</p>
                 <img alt={item.title} src={item.poster}/>
             </div>
+            // <Movies 
+            // title={item.title} votes={item.total_votes} poster={item.poster}/>
           )
         })
       }
