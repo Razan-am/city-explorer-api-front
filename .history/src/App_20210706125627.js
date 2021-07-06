@@ -38,7 +38,7 @@ class App extends Component {
         show: true,
       })
     }).then(async()=>{
-      const axiosLocalApi = await axios.get(`http://localhost:8000/weather/?key=${process.env.REACT_APP_WEATHER_API_KEY}&lat=${this.state.lat}&lon=${this.state.lon}`)
+      const axiosLocalApi = await axios.get(`http://localhost:8000/weather/?key=1ce9a45e3f574b64af6379c6c4a8b0cc&lat=${this.state.lat}&lon=${this.state.lon}`)
         this.setState({
           weatherData: axiosLocalApi.data
         })
@@ -78,7 +78,7 @@ class App extends Component {
               <h5>City Name={this.state.display_name}</h5>
               <h5>Longitude={this.state.lon}</h5>
               <h5>Lattitude={this.state.lat}</h5>
-              <Image alt='map' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=1-8`} fluid style={{ margin: '100px', width: '1000px' }} />
+              <Image alt='map' src={`https://maps.locationiq.com/v3/staticmap?key=pk.0a80fd547a3c1e8574e39921b81514c5&center=${this.state.lat},${this.state.lon}&zoom=1-8`} fluid style={{ margin: '100px', width: '1000px' }} />
             </div>
           }
         {
