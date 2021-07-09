@@ -94,10 +94,10 @@ class App extends Component {
         // console.log(this.state.moviesData)&&
         this.state.moviesData.map((item)=>{
           return(
-            <div style={{ border:'1px solid black' , marginLeft:'150px' , display:'inline-block'}}>
+            <div style={{ border:'1px solid black' , marginLeft:'150px'}}>
                 <p style={{fontFamily:'cursive'}}>Movie Name:{item.title}</p>
                 <p style={{fontFamily:'cursive'}}>Movie Number Of Votes:{item.total_votes}</p>
-                <img alt={item.title} src={item.poster} style={{display:'inline-block' , padding:'10px'}}/>
+                <img alt={item.title} src={item.poster}/>
             </div>
           )
         })

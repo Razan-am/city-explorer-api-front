@@ -71,33 +71,33 @@ class App extends Component {
         <AlertMessage
           alert={this.state.alert}
           error={this.state.error} />
-        <form onSubmit={this.handlerSubmit} style={{ marginLeft: '550px'}}>
+        <form onSubmit={this.handlerSubmit} style={{ marginLeft: '550px',}}>
           <input type='text' placeholder='City Name' onChange={(e) => { this.handlerData(e) }} />
           <button >Explorer!</button>
         </form>
           {this.state.show &&
             <div>
-              <h4 style={{ textAlign:'center'}}>City Name:{this.state.display_name}</h4>
-              <h4 style={{ textAlign:'center'}}>Longitude:{this.state.lon}</h4>
-              <h4 style={{ textAlign:'center'}}>Lattitude:{this.state.lat}</h4>
-              <Image alt='map' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=1-8`} fluid style={{ margin: '150px', width: '1000px' }} />
+              <h5>City Name={this.state.display_name}</h5>
+              <h5>Longitude={this.state.lon}</h5>
+              <h5>Lattitude={this.state.lat}</h5>
+              <Image alt='map' src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=1-8`} fluid style={{ margin: '100px', width: '1000px' }} />
             </div>
           }
         {
           // console.log(this.state.weatherData)&&
           this.state.weatherData.map((item)=>{
             console.log('helllo');
-            return <Weather desc={item.description} date={item.date}  />
+            return <Weather desc={item.description} date={item.date} />
           })
       }
       {
         // console.log(this.state.moviesData)&&
         this.state.moviesData.map((item)=>{
           return(
-            <div style={{ border:'1px solid black' , marginLeft:'150px' , display:'inline-block'}}>
-                <p style={{fontFamily:'cursive'}}>Movie Name:{item.title}</p>
-                <p style={{fontFamily:'cursive'}}>Movie Number Of Votes:{item.total_votes}</p>
-                <img alt={item.title} src={item.poster} style={{display:'inline-block' , padding:'10px'}}/>
+            <div>
+                <p>{item.title}</p>
+                <p>{item.total_votes}</p>
+                <img alt={item.title} src={item.poster}/>
             </div>
           )
         })

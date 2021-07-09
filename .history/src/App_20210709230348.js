@@ -97,7 +97,7 @@ class App extends Component {
             <div style={{ border:'1px solid black' , marginLeft:'150px' , display:'inline-block'}}>
                 <p style={{fontFamily:'cursive'}}>Movie Name:{item.title}</p>
                 <p style={{fontFamily:'cursive'}}>Movie Number Of Votes:{item.total_votes}</p>
-                <img alt={item.title} src={item.poster} style={{display:'inline-block' , padding:'10px'}}/>
+                <img alt={item.title} src={item.poster}/>
             </div>
           )
         })

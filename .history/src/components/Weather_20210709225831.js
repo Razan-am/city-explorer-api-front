@@ -5,8 +5,8 @@ class Weather extends Component {
         console.log(this.props);
         return (
             <>
-                <h5 style={{ marginLeft: '50px' }} >{this.props.desc}</h5>
-                <h6 style={{ marginLeft: '50px' }} >{this.props.date}</h6>
+                <h6 style={{ marginLeft: '150px' }} >{this.props.desc}</h6>
+                <h6 style={{ marginLeft: '150px' }} >{this.props.date}</h6>
             </>
         )
     }
